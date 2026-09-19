@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+/.pnpm-store
+
+# Production & Build outputs
+/frontend/dist/
+/frontend/dist-ssr/
+/backend/target/
+*.out
+*.class
+*.jar
+*.war
+*.ear
+
+# Environment & Local settings
+.env
+.env.local
+.env.*.local
+*.log
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.tmp
+.DS_Store
+
+# Maven wrapper temporary files
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar

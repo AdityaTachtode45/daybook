@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daybook — Warm Editorial Journal</title>
+    <meta name="description" content="A premium daily diary web app with calendar views, rich-text entries, media uploads, and writing streaks." />
+    <meta name="theme-color" content="#F6F2EA" id="theme-color-meta" />
+
+    <!-- Google Fonts: Fraunces, Geist Sans, Geist Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Anti-Flash Inline Theme Initialization -->
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('daybook_theme');
+          var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored === 'dark' || (stored !== 'light' && systemDark) ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          var meta = document.getElementById('theme-color-meta');
+          if (meta) {
+            meta.setAttribute('content', theme === 'dark' ? '#0D0E12' : '#F6F2EA');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-bg text-text font-sans antialiased selection:bg-accent selection:text-accent-fg min-h-screen overflow-x-hidden transition-colors duration-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

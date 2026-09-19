@@ -1,0 +1,177 @@
+/* Design Tokens for Light "Golden Hour Paper" and Dark "Ink" Themes */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap');
+
+:root, [data-theme="light"] {
+  --bg: #F6F2EA;
+  --surface: #FFFFFF;
+  --surface-2: #FBF8F2;
+  --surface-glass: rgba(255, 255, 255, 0.72);
+  --text: #1C1A16;
+  --muted: #6E695F;
+  --border: rgba(30, 27, 22, 0.10);
+  --accent: #C8471A;
+  --accent-hover: #B03D14;
+  --accent-fg: #FFFFFF;
+  --sage: #2F8F7E;
+  --gold: #C98A12;
+
+  --mood-great: #4CB782;
+  --mood-good: #4BA3C7;
+  --mood-okay: #E0A93B;
+  --mood-low: #8B7FD1;
+  --mood-bad: #D9576B;
+
+  --ring: #C8471A;
+  --grain-opacity: 0.035;
+  --glow-shadow: 0 10px 30px -10px rgba(200, 71, 26, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] {
+  --bg: #0D0E12;
+  --surface: #16181E;
+  --surface-2: #1C1F26;
+  --surface-glass: rgba(22, 24, 30, 0.75);
+  --text: #EDEAE3;
+  --muted: #A19E96;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #FF8A4C;
+  --accent-hover: #FF9C68;
+  --accent-fg: #1A0E06;
+  --sage: #6FCDB8;
+  --gold: #F5C15A;
+
+  --mood-great: #4CB782;
+  --mood-good: #4BA3C7;
+  --mood-okay: #E0A93B;
+  --mood-low: #8B7FD1;
+  --mood-bad: #D9576B;
+
+  --ring: #FF8A4C;
+  --grain-opacity: 0.025;
+  --glow-shadow: 0 10px 30px -10px rgba(255, 138, 76, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.12);
+}
+
+/* Base Body & Grain Overlay */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+.font-mono {
+  font-family: 'Geist Mono', monospace;
+}
+
+/* Faint Film-Grain Texture Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Glassmorphic & Journal Components */
+.glass-panel {
+  background-color: var(--surface-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.08);
+}
+
+.journal-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+
+.journal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-shadow);
+}
+
+.journal-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* Breathing Glow Ring on Today Date */
+@keyframes today-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(200, 71, 26, 0.4), inset 0 0 10px rgba(200, 71, 26, 0.2);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(200, 71, 26, 0), inset 0 0 14px rgba(200, 71, 26, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(200, 71, 26, 0), inset 0 0 10px rgba(200, 71, 26, 0.2);
+  }
+}
+
+.today-breathing-ring {
+  animation: today-pulse 3s infinite ease-in-out;
+}
+
+/* Button & Interactive Scale */
+button:active, a:active {
+  transform: scale(0.97);
+}
+
+/* Input, Select, and Form Field Styling for Light & Dark Themes */
+input, textarea, select {
+  color: var(--text);
+  background-color: var(--surface-2);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #F9FAFB !important;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #9CA3AF !important;
+}
+
+[data-theme="dark"] select option {
+  background-color: #16181E !important;
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(255, 138, 76, 0.22);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* View Transitions Circular Reveal Animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 450ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
