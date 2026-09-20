@@ -142,12 +142,30 @@ input, textarea, select {
   border-color: var(--border);
 }
 
+/* Webkit Autofill fix for input fields in light and dark mode */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--text) !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--surface-2) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 [data-theme="dark"] input,
 [data-theme="dark"] textarea,
 [data-theme="dark"] select {
   background-color: rgba(255, 255, 255, 0.05);
   color: #F9FAFB !important;
   border-color: rgba(255, 255, 255, 0.14);
+}
+
+[data-theme="dark"] input:-webkit-autofill,
+[data-theme="dark"] input:-webkit-autofill:hover,
+[data-theme="dark"] input:-webkit-autofill:focus,
+[data-theme="dark"] input:-webkit-autofill:active {
+  -webkit-text-fill-color: #EDEAE3 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #1C1F26 inset !important;
 }
 
 [data-theme="dark"] input::placeholder,
